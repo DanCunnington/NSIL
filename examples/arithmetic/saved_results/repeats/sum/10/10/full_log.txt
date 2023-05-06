@@ -1,0 +1,961 @@
+########################################################
+Neural-Symbolic Inductive Learner (NSIL)
+########################################################
+Current machine date/time: 2023-01-05 11:47:30.090813
+Running on device: cuda:0
+Saving log and results to: results/repeats/sum/10/10
+Arguments: {'pct': 10, 'num_workers': 2, 'tune': False, 'logging': 'INFO', 'seed': 3531, 'num_iterations': 20, 'num_tuning_iterations': 2, 'explore_ex_lr': 1, 'exploit_ex_lr': 1, 'save_dir': 'results/repeats/sum/10/10', 'skip_initial_testing': False, 'custom_eval_interval': 1, 'nesy_reasoner': 'NeurASP', 'lr': 0.001, 'net_batch_size': 64, 'num_net_epochs': 1, 'save_nets': True, 'ilp_system': 'FastLAS', 'custom_ilp_cmd_line_args': None, 'prune_ilp_example_weight_threshold': 1, 'use_bootstrap_cache': False, 'pylasp': False, 'ilp_config': None, 'task_type': 'sum', 'image_type': 'mnist'}
+Loading data...
+Starting NSIL training loop...
+
+##########
+Iteration: 1
+##########
+Running ILP system with command: 
+/u/dantc93/NSL_End_to_End/FastLAS /tmp/NSIL_tmp_file_rowsh8dt --solver="ASP" --fl2 --threads 128 --write-cache results/repeats/sum/10/10/LAS_cache/fastlas_cache
+Learned hypothesis:
+solution(V0,V1,V2) :- V2 = V0 + V1, digit_type(V0), digit_type(V1), num(V2).
+
+Component: ILP, run time: 15.654496192932129
+Converted hypothesis for neural-symbolic reasoning:
+solution(V0,V1,V2) :- V2 = V0 + V1, digit_type(V0), digit_type(V1), num(V2).
+
+Running testing for iteration: 0...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.0759
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 0 test accuracy:
+	End-to-end: 0.0698
+	Network(s): {'digit': 0.0759}
+	Hypothesis: 1.0
+Confusion matrix for network digit:
+[[  0   1 298   0   0  73 578   0   0  30]
+ [  0   0 330   0   0 136 586   0  29  54]
+ [  0  10 426   0   0  84 381   0   7 124]
+ [  0   6 303   0   0  13 206   0   1 481]
+ [  0   1 299   0   0 150 467   0   0  65]
+ [  0   7 327   0   0  47 397   0   0 114]
+ [  0   4 462   0   0  90 233   0   6 163]
+ [  0   1 383   0   0  68 496   0   0  80]
+ [  0   9 390   0   0  31 468   0   0  76]
+ [  0   1 404   0   0  45 506   0   0  53]]
+Starting neural network training for 1 epoch(s)...
+Component: nn_training, run time: 9.070876359939575
+Evaluating neural network digit on the train set
+Starting symbolic task evaluation for train set with preds type: nn.
+Component: symbolic_train_nn_preds_eval, run time: 11.625738620758057
+Performing exploration... 
+False Negative Rate for each label/structure combination:
+{'label_1': 100.0, 'label_5': 100.0, 'label_15': 96.93877551020408, 'label_8': 70.09803921568627, 'label_6': 100.0, 'label_9': 100.0, 'label_13': 100.0, 'label_7': 98.01980198019803, 'label_10': 100.0, 'label_11': 100.0, 'label_12': 28.57142857142857, 'label_14': 100.0, 'label_4': 84.21052631578947, 'label_3': 98.1651376146789, 'label_2': 100.0, 'label_16': 100.0, 'label_17': 100.0, 'label_0': 100.0, 'label_18': 100.0}
+Component: exploration, run time: 6.415886163711548
+Performing exploitation...
+Component: exploitation, run time: 3.0013232231140137
+Running testing for iteration: 1...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.1198
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 1 test accuracy:
+	End-to-end: 0.0928
+	Network(s): {'digit': 0.1198}
+	Hypothesis: 1.0
+Confusion matrix for network digit:
+[[  0   0 202   0   0   0 777   0   0   1]
+ [  0   9 679   0   0   0 447   0   0   0]
+ [  0  47 565   0   0   0 417   0   0   3]
+ [  0   2 271   0   0   0 687   0   1  49]
+ [  0   1  95   0   0   0 876   0   0  10]
+ [  0   5 170   0   0   0 707   0   0  10]
+ [  0   9 314   0   0   0 603   0   1  31]
+ [  0   1 107   0   0   0 907   0   0  13]
+ [  0   2  63   0   0   0 896   0   0  13]
+ [  0   1  20   0   0   0 967   0   0  21]]
+
+##########
+Iteration: 2
+##########
+Running ILP system with command: 
+/u/dantc93/NSL_End_to_End/FastLAS /tmp/NSIL_tmp_file_huwjp26s --solver="ASP" --fl2 --threads 128 --read-cache results/repeats/sum/10/10/LAS_cache/fastlas_cache
+Learned hypothesis:
+solution(V0,V1,V2) :- V2 = V0, not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V1), plus_nine(V0,V2), digit_type(V0), digit_type(V1), num(V2).
+
+Component: ILP, run time: 29.835811853408813
+Converted hypothesis for neural-symbolic reasoning:
+solution(V0,V1,V2) :- V2 = V0, not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V1), plus_nine(V0,V2), digit_type(V0), digit_type(V1), num(V2).
+
+Starting neural network training for 1 epoch(s)...
+Component: nn_training, run time: 8.916586875915527
+Evaluating neural network digit on the train set
+Starting symbolic task evaluation for train set with preds type: nn.
+Component: symbolic_train_nn_preds_eval, run time: 12.023738384246826
+Performing exploration... 
+False Negative Rate for each label/structure combination:
+{'label_1': 97.95918367346938, 'label_5': 100.0, 'label_15': 24.489795918367353, 'label_8': 100.0, 'label_6': 90.10989010989012, 'label_9': 100.0, 'label_13': 100.0, 'label_7': 100.0, 'label_10': 98.62385321100918, 'label_11': 74.87179487179488, 'label_12': 94.85714285714286, 'label_14': 100.0, 'label_4': 100.0, 'label_3': 92.66055045871559, 'label_2': 92.6829268292683, 'label_16': 100.0, 'label_17': 100.0, 'label_0': 100.0, 'label_18': 100.0}
+Component: exploration, run time: 6.339736461639404
+Performing exploitation...
+Component: exploitation, run time: 2.988832950592041
+Running testing for iteration: 2...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.1351
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 2 test accuracy:
+	End-to-end: 0.069
+	Network(s): {'digit': 0.1351}
+	Hypothesis: 0.0
+Confusion matrix for network digit:
+[[  0  22 138  86   0   0 734   0   0   0]
+ [  0   1 240 583   0   0 311   0   0   0]
+ [  0 116 564 127   0   0 225   0   0   0]
+ [  0   3 244 199   0   0 564   0   0   0]
+ [  0   2  73  53   0   0 854   0   0   0]
+ [  0  16 206  84   0   0 586   0   0   0]
+ [  0   8 285  78   0   0 587   0   0   0]
+ [  0   1  54  44   0   0 929   0   0   0]
+ [  0   1 186   7   0   0 780   0   0   0]
+ [  0   1  46   7   0   0 955   0   0   0]]
+
+##########
+Iteration: 3
+##########
+Running ILP system with command: 
+/u/dantc93/NSL_End_to_End/FastLAS /tmp/NSIL_tmp_file__hemu4ri --solver="ASP" --fl2 --threads 128 --read-cache results/repeats/sum/10/10/LAS_cache/fastlas_cache
+Learned hypothesis:
+solution(V0,V1,V2) :- V2 = V1, not even(V0), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), plus_nine(V1,V2), digit_type(V0), digit_type(V1), num(V2).
+
+Component: ILP, run time: 48.23733353614807
+Converted hypothesis for neural-symbolic reasoning:
+solution(V0,V1,V2) :- V2 = V1, not even(V0), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), plus_nine(V1,V2), digit_type(V0), digit_type(V1), num(V2).
+
+Starting neural network training for 1 epoch(s)...
+Component: nn_training, run time: 9.024543762207031
+Evaluating neural network digit on the train set
+Starting symbolic task evaluation for train set with preds type: nn.
+Component: symbolic_train_nn_preds_eval, run time: 11.869730472564697
+Performing exploration... 
+False Negative Rate for each label/structure combination:
+{'label_1': 100.0, 'label_5': 100.0, 'label_15': 27.55102040816326, 'label_8': 100.0, 'label_6': 75.82417582417582, 'label_9': 100.0, 'label_13': 100.0, 'label_7': 100.0, 'label_10': 100.0, 'label_11': 100.0, 'label_12': 75.42857142857142, 'label_14': 100.0, 'label_4': 100.0, 'label_3': 35.77981651376147, 'label_2': 100.0, 'label_16': 100.0, 'label_17': 100.0, 'label_0': 100.0, 'label_18': 100.0}
+Component: exploration, run time: 6.299410581588745
+Performing exploitation...
+Component: exploitation, run time: 3.029209613800049
+Running testing for iteration: 3...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.1289
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 3 test accuracy:
+	End-to-end: 0.094
+	Network(s): {'digit': 0.1289}
+	Hypothesis: 0.0
+Confusion matrix for network digit:
+[[   0    0    0  806    0    0  170    4    0    0]
+ [   0    0    0 1016    0    0  119    0    0    0]
+ [   0    0    0  841    0    0  191    0    0    0]
+ [   0    0    0  697    0    0  313    0    0    0]
+ [   0    0    0  116    0    0  866    0    0    0]
+ [   0    0    0  430    0    0  462    0    0    0]
+ [   0    0    0  367    0    0  591    0    0    0]
+ [   0    0    0  162    0    0  863    1    2    0]
+ [   0    0    0   86    0    0  888    0    0    0]
+ [   0    0    0   32    0    0  974    0    3    0]]
+
+##########
+Iteration: 4
+##########
+Running ILP system with command: 
+/u/dantc93/NSL_End_to_End/FastLAS /tmp/NSIL_tmp_file_ldr0a_da --solver="ASP" --fl2 --threads 128 --read-cache results/repeats/sum/10/10/LAS_cache/fastlas_cache
+Learned hypothesis:
+solution(V0,V1,V2) :- V2 = V1 + V1, not even(V0), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V1), V2 = V0, not even(V0), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), plus_nine(V0,V2), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), even(V1), V2 = V0 + V0, digit_type(V0), digit_type(V1), num(V2).
+
+Component: ILP, run time: 70.80875635147095
+Converted hypothesis for neural-symbolic reasoning:
+solution(V0,V1,V2) :- V2 = V1 + V1, not even(V0), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V1), V2 = V0, not even(V0), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), plus_nine(V0,V2), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), even(V1), V2 = V0 + V0, digit_type(V0), digit_type(V1), num(V2).
+
+Starting neural network training for 1 epoch(s)...
+Component: nn_training, run time: 9.088616609573364
+Evaluating neural network digit on the train set
+Starting symbolic task evaluation for train set with preds type: nn.
+Component: symbolic_train_nn_preds_eval, run time: 11.815386295318604
+Performing exploration... 
+False Negative Rate for each label/structure combination:
+{'label_1': 100.0, 'label_5': 100.0, 'label_15': 100.0, 'label_8': 97.54901960784314, 'label_6': 75.82417582417582, 'label_9': 100.0, 'label_13': 86.95652173913044, 'label_7': 88.61386138613861, 'label_10': 100.0, 'label_11': 100.0, 'label_12': 100.0, 'label_14': 42.592592592592595, 'label_4': 100.0, 'label_3': 98.1651376146789, 'label_2': 100.0, 'label_16': 100.0, 'label_17': 100.0, 'label_0': 100.0, 'label_18': 100.0}
+Component: exploration, run time: 6.3640830516815186
+Performing exploitation...
+Component: exploitation, run time: 3.044760227203369
+Running testing for iteration: 4...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.1297
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 4 test accuracy:
+	End-to-end: 0.0662
+	Network(s): {'digit': 0.1297}
+	Hypothesis: 0.198
+Confusion matrix for network digit:
+[[  0   0   0 110   0   0   0 870   0   0]
+ [  0   0   0 774  34   0   0 327   0   0]
+ [  0   0   0 747  24   0   0 261   0   0]
+ [  0   0   0 385 283   0   0 342   0   0]
+ [  0   0   0   6 264   0   0 712   0   0]
+ [  0   0   0 173  62   0   0 657   0   0]
+ [  0   0   0 116 103   0   0 739   0   0]
+ [  0   0   0  66 314   0   0 648   0   0]
+ [  0   0   0  18 233   0   0 723   0   0]
+ [  0   0   0   5 439   0   0 565   0   0]]
+
+##########
+Iteration: 5
+##########
+Running ILP system with command: 
+/u/dantc93/NSL_End_to_End/FastLAS /tmp/NSIL_tmp_file_8o4v1np4 --solver="ASP" --fl2 --threads 128 --read-cache results/repeats/sum/10/10/LAS_cache/fastlas_cache
+Learned hypothesis:
+solution(V0,V1,V2) :- even(V0), V2 = V1, not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V1), plus_nine(V1,V2), not even(V0), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- V2 = V0 + V0, not even(V0), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), even(V1), V2 = V1 + V1, digit_type(V0), digit_type(V1), num(V2).
+
+Component: ILP, run time: 95.93078398704529
+Converted hypothesis for neural-symbolic reasoning:
+solution(V0,V1,V2) :- even(V0), V2 = V1, not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V1), plus_nine(V1,V2), not even(V0), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- V2 = V0 + V0, not even(V0), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), even(V1), V2 = V1 + V1, digit_type(V0), digit_type(V1), num(V2).
+
+Starting neural network training for 1 epoch(s)...
+Component: nn_training, run time: 9.144911766052246
+Evaluating neural network digit on the train set
+Starting symbolic task evaluation for train set with preds type: nn.
+Component: symbolic_train_nn_preds_eval, run time: 11.839624404907227
+Performing exploration... 
+False Negative Rate for each label/structure combination:
+{'label_1': 100.0, 'label_5': 100.0, 'label_15': 100.0, 'label_8': 76.9607843137255, 'label_6': 68.68131868131869, 'label_9': 100.0, 'label_13': 73.91304347826086, 'label_7': 99.00990099009901, 'label_10': 100.0, 'label_11': 100.0, 'label_12': 100.0, 'label_14': 100.0, 'label_4': 100.0, 'label_3': 86.23853211009174, 'label_2': 100.0, 'label_16': 100.0, 'label_17': 100.0, 'label_0': 100.0, 'label_18': 100.0}
+Component: exploration, run time: 6.317543983459473
+Performing exploitation...
+Component: exploitation, run time: 3.027662515640259
+Running testing for iteration: 5...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.1429
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 5 test accuracy:
+	End-to-end: 0.0666
+	Network(s): {'digit': 0.1429}
+	Hypothesis: 0.1986
+Confusion matrix for network digit:
+[[  0   0   0 739 241   0   0   0   0   0]
+ [  0   0   0 883 252   0   0   0   0   0]
+ [  0   0   0 963  67   0   0   2   0   0]
+ [  0   0   0 548 462   0   0   0   0   0]
+ [  0   0   0  44 869   0   0  69   0   0]
+ [  0   0   0 310 581   0   0   1   0   0]
+ [  0   0   0 672 283   0   0   3   0   0]
+ [  0   0   0  99 917   0   0  12   0   0]
+ [  0   0   0 104 866   0   0   4   0   0]
+ [  0   0   0  18 964   0   0  27   0   0]]
+
+##########
+Iteration: 6
+##########
+Running ILP system with command: 
+/u/dantc93/NSL_End_to_End/FastLAS /tmp/NSIL_tmp_file_gqmv7gr1 --solver="ASP" --fl2 --threads 128 --read-cache results/repeats/sum/10/10/LAS_cache/fastlas_cache
+Learned hypothesis:
+solution(V0,V1,V2) :- even(V1), V2 = V1 + V0, not even(V0), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), even(V1), V2 = V0, digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- plus_nine(V0,V2), not even(V0), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), V2 = V1 + V1, not even(V1), digit_type(V0), digit_type(V1), num(V2).
+
+Component: ILP, run time: 102.09023571014404
+Converted hypothesis for neural-symbolic reasoning:
+solution(V0,V1,V2) :- even(V1), V2 = V1 + V0, not even(V0), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), even(V1), V2 = V0, digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- plus_nine(V0,V2), not even(V0), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), V2 = V1 + V1, not even(V1), digit_type(V0), digit_type(V1), num(V2).
+
+Starting neural network training for 1 epoch(s)...
+Component: nn_training, run time: 9.163517475128174
+Evaluating neural network digit on the train set
+Starting symbolic task evaluation for train set with preds type: nn.
+Component: symbolic_train_nn_preds_eval, run time: 11.979424953460693
+Performing exploration... 
+False Negative Rate for each label/structure combination:
+{'label_1': 100.0, 'label_5': 100.0, 'label_15': 100.0, 'label_8': 66.17647058823529, 'label_6': 86.26373626373626, 'label_9': 83.1896551724138, 'label_13': 100.0, 'label_7': 100.0, 'label_10': 98.1651376146789, 'label_11': 91.28205128205128, 'label_12': 99.42857142857143, 'label_14': 100.0, 'label_4': 100.0, 'label_3': 100.0, 'label_2': 82.92682926829268, 'label_16': 100.0, 'label_17': 100.0, 'label_0': 100.0, 'label_18': 100.0}
+Component: exploration, run time: 6.556957721710205
+Performing exploitation...
+Component: exploitation, run time: 2.938931703567505
+Running testing for iteration: 6...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.1917
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 6 test accuracy:
+	End-to-end: 0.067
+	Network(s): {'digit': 0.1917}
+	Hypothesis: 0.3454
+Confusion matrix for network digit:
+[[   0  597    0   88    0    0    0    0  295    0]
+ [   0  583    0  243    0    0    0    0  309    0]
+ [   0  645    0  200    0    0    0    0  187    0]
+ [   0   96    0  395    0    0    0    0  519    0]
+ [   0    2    0    5    0    0    0    0  975    0]
+ [   0  126    0  122    0    0    0    0  644    0]
+ [   0   68    0   84    0    0    0    0  806    0]
+ [   0   24    0   21    0    0    0    0  983    0]
+ [   0   25    0   10    0    0    0    0  939    0]
+ [   0    0    0    5    0    0    0    0 1004    0]]
+
+##########
+Iteration: 7
+##########
+Running ILP system with command: 
+/u/dantc93/NSL_End_to_End/FastLAS /tmp/NSIL_tmp_file_dahgfdbp --solver="ASP" --fl2 --threads 128 --read-cache results/repeats/sum/10/10/LAS_cache/fastlas_cache
+Learned hypothesis:
+solution(V0,V1,V2) :- even(V0), V2 = V0 + V0, not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- V2 = V1, not even(V0), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V1), V2 = V0 + V0, not even(V0), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), even(V1), plus_nine(V0,V2), digit_type(V0), digit_type(V1), num(V2).
+
+Component: ILP, run time: 125.02208757400513
+Converted hypothesis for neural-symbolic reasoning:
+solution(V0,V1,V2) :- even(V0), V2 = V0 + V0, not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- V2 = V1, not even(V0), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V1), V2 = V0 + V0, not even(V0), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), even(V1), plus_nine(V0,V2), digit_type(V0), digit_type(V1), num(V2).
+
+Starting neural network training for 1 epoch(s)...
+Component: nn_training, run time: 9.103639364242554
+Evaluating neural network digit on the train set
+Starting symbolic task evaluation for train set with preds type: nn.
+Component: symbolic_train_nn_preds_eval, run time: 11.73383378982544
+Performing exploration... 
+False Negative Rate for each label/structure combination:
+{'label_1': 100.0, 'label_5': 99.20634920634922, 'label_15': 81.63265306122449, 'label_8': 76.47058823529412, 'label_6': 76.92307692307692, 'label_9': 100.0, 'label_13': 71.73913043478262, 'label_7': 99.00990099009901, 'label_10': 100.0, 'label_11': 100.0, 'label_12': 87.42857142857143, 'label_14': 95.37037037037037, 'label_4': 100.0, 'label_3': 8.25688073394495, 'label_2': 100.0, 'label_16': 100.0, 'label_17': 100.0, 'label_0': 100.0, 'label_18': 100.0}
+Component: exploration, run time: 6.247788190841675
+Performing exploitation...
+Component: exploitation, run time: 3.0218398571014404
+Running testing for iteration: 7...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.1624
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 7 test accuracy:
+	End-to-end: 0.1114
+	Network(s): {'digit': 0.1624}
+	Hypothesis: 0.0
+Confusion matrix for network digit:
+[[   0    0    0  973    6    0    0    1    0    0]
+ [   0    2    0 1098   35    0    0    0    0    0]
+ [   0    0    1  981   46    0    3    1    0    0]
+ [   0    0    1  901  105    0    2    1    0    0]
+ [   0    0    0   37  668    0  277    0    0    0]
+ [   0    0    0  627  220    1    9   35    0    0]
+ [   0    0    0  398  556    0    4    0    0    0]
+ [   0    0    0  167  489    0  325   47    0    0]
+ [   0    0    1  276  527    0  165    5    0    0]
+ [   0    0    0   34  314    0  658    3    0    0]]
+
+##########
+Iteration: 8
+##########
+Running ILP system with command: 
+/u/dantc93/NSL_End_to_End/FastLAS /tmp/NSIL_tmp_file_f60o33o3 --solver="ASP" --fl2 --threads 128 --read-cache results/repeats/sum/10/10/LAS_cache/fastlas_cache
+Learned hypothesis:
+solution(V0,V1,V2) :- even(V0), V2 = V1 + V0, not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), even(V1), V2 = V1, digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- plus_nine(V1,V2), not even(V0), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V1), V2 = V1 + V1, not even(V0), digit_type(V0), digit_type(V1), num(V2).
+
+Component: ILP, run time: 125.09578013420105
+Converted hypothesis for neural-symbolic reasoning:
+solution(V0,V1,V2) :- even(V0), V2 = V1 + V0, not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), even(V1), V2 = V1, digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- plus_nine(V1,V2), not even(V0), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V1), V2 = V1 + V1, not even(V0), digit_type(V0), digit_type(V1), num(V2).
+
+Starting neural network training for 1 epoch(s)...
+Component: nn_training, run time: 9.09312391281128
+Evaluating neural network digit on the train set
+Starting symbolic task evaluation for train set with preds type: nn.
+Component: symbolic_train_nn_preds_eval, run time: 11.838814973831177
+Performing exploration... 
+False Negative Rate for each label/structure combination:
+{'label_1': 100.0, 'label_5': 100.0, 'label_15': 100.0, 'label_8': 100.0, 'label_6': 100.0, 'label_9': 100.0, 'label_13': 100.0, 'label_7': 95.04950495049505, 'label_10': 49.54128440366973, 'label_11': 96.41025641025641, 'label_12': 97.71428571428571, 'label_14': 38.888888888888886, 'label_4': 93.85964912280701, 'label_3': 93.57798165137613, 'label_2': 100.0, 'label_16': 100.0, 'label_17': 100.0, 'label_0': 100.0, 'label_18': 100.0}
+Component: exploration, run time: 6.2575883865356445
+Performing exploitation...
+Component: exploitation, run time: 3.0134339332580566
+Running testing for iteration: 8...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.1951
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 8 test accuracy:
+	End-to-end: 0.0908
+	Network(s): {'digit': 0.1951}
+	Hypothesis: 0.3386
+Confusion matrix for network digit:
+[[   0  956   14    0    0    4    6    0    0    0]
+ [   0 1130    2    0    0    3    0    0    0    0]
+ [   0  668  337    0    0   24    3    0    0    0]
+ [   0  889   53    0    0   59    9    0    0    0]
+ [   0  143    0    0    0  811   28    0    0    0]
+ [   0  518    0    0    0  327   47    0    0    0]
+ [   0  377    3    0    0  421  157    0    0    0]
+ [   0  222    2    0    0  804    0    0    0    0]
+ [   0  300    0    0    0  672    2    0    0    0]
+ [   0   43    0    0    0  962    4    0    0    0]]
+
+##########
+Iteration: 9
+##########
+Running ILP system with command: 
+/u/dantc93/NSL_End_to_End/FastLAS /tmp/NSIL_tmp_file_hdfcgubm --solver="ASP" --fl2 --threads 128 --read-cache results/repeats/sum/10/10/LAS_cache/fastlas_cache
+Learned hypothesis:
+solution(V0,V1,V2) :- V2 = V1, not even(V0), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V1), V2 = V1 + V1, not even(V0), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), V2 = V1 + V1, not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), even(V1), plus_nine(V1,V2), digit_type(V0), digit_type(V1), num(V2).
+
+Component: ILP, run time: 142.68195486068726
+Converted hypothesis for neural-symbolic reasoning:
+solution(V0,V1,V2) :- V2 = V1, not even(V0), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V1), V2 = V1 + V1, not even(V0), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), V2 = V1 + V1, not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), even(V1), plus_nine(V1,V2), digit_type(V0), digit_type(V1), num(V2).
+
+Starting neural network training for 1 epoch(s)...
+Component: nn_training, run time: 9.202192544937134
+Evaluating neural network digit on the train set
+Starting symbolic task evaluation for train set with preds type: nn.
+Component: symbolic_train_nn_preds_eval, run time: 11.712762117385864
+Performing exploration... 
+False Negative Rate for each label/structure combination:
+{'label_1': 48.97959183673469, 'label_5': 96.03174603174604, 'label_15': 74.48979591836735, 'label_8': 67.15686274509804, 'label_6': 78.02197802197803, 'label_9': 100.0, 'label_13': 48.550724637681164, 'label_7': 100.0, 'label_10': 100.0, 'label_11': 99.48717948717949, 'label_12': 94.85714285714286, 'label_14': 100.0, 'label_4': 100.0, 'label_3': 26.60550458715596, 'label_2': 97.5609756097561, 'label_16': 98.59154929577466, 'label_17': 92.72727272727272, 'label_0': 100.0, 'label_18': 100.0}
+Component: exploration, run time: 6.586409330368042
+Performing exploitation...
+Component: exploitation, run time: 3.082376718521118
+Running testing for iteration: 9...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.2564
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 9 test accuracy:
+	End-to-end: 0.133
+	Network(s): {'digit': 0.2564}
+	Hypothesis: 0.0
+Confusion matrix for network digit:
+[[  0   7   0 927  46   0   0   0   0   0]
+ [  0 952   0 171  12   0   0   0   0   0]
+ [  0  24   2 939  61   2   4   0   0   0]
+ [  0   1   1 855 147   4   1   1   0   0]
+ [  0   0   0  50 614  51 266   0   1   0]
+ [  0   7   0 273 606   2   4   0   0   0]
+ [  0   3   0 257 643   5  50   0   0   0]
+ [  0  16   1  72 890   3  45   0   1   0]
+ [  0   5   5 118 533   3 221   0  89   0]
+ [  0   1   0  18 315   1 617   0  57   0]]
+
+##########
+Iteration: 10
+##########
+Running ILP system with command: 
+/u/dantc93/NSL_End_to_End/FastLAS /tmp/NSIL_tmp_file_fulopkqq --solver="ASP" --fl2 --threads 128 --read-cache results/repeats/sum/10/10/LAS_cache/fastlas_cache
+Learned hypothesis:
+solution(V0,V1,V2) :- even(V0), even(V1), V2 = V1 + V0, digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- V2 = V0 + V1, not even(V0), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V1), V2 = V0, not even(V0), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), plus_nine(V0,V2), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+
+Component: ILP, run time: 143.2698256969452
+Converted hypothesis for neural-symbolic reasoning:
+solution(V0,V1,V2) :- even(V0), even(V1), V2 = V1 + V0, digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- V2 = V0 + V1, not even(V0), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V1), V2 = V0, not even(V0), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), plus_nine(V0,V2), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+
+Starting neural network training for 1 epoch(s)...
+Component: nn_training, run time: 9.269195556640625
+Evaluating neural network digit on the train set
+Starting symbolic task evaluation for train set with preds type: nn.
+Component: symbolic_train_nn_preds_eval, run time: 11.951014757156372
+Performing exploration... 
+False Negative Rate for each label/structure combination:
+{'label_1': 81.63265306122449, 'label_5': 97.61904761904762, 'label_15': 91.83673469387756, 'label_8': 78.92156862745098, 'label_6': 79.12087912087912, 'label_9': 74.56896551724138, 'label_13': 76.08695652173914, 'label_7': 91.58415841584159, 'label_10': 80.73394495412845, 'label_11': 76.41025641025641, 'label_12': 97.14285714285714, 'label_14': 79.62962962962963, 'label_4': 47.36842105263158, 'label_3': 100.0, 'label_2': 28.04878048780488, 'label_16': 50.70422535211267, 'label_17': 96.36363636363636, 'label_0': 10.526315789473683, 'label_18': 8.695652173913048}
+Component: exploration, run time: 6.351576328277588
+Performing exploitation...
+Component: exploitation, run time: 3.035041332244873
+Running testing for iteration: 10...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.5136
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 10 test accuracy:
+	End-to-end: 0.2272
+	Network(s): {'digit': 0.5136}
+	Hypothesis: 0.6184
+Confusion matrix for network digit:
+[[943   2   6   0   1   0   0  27   0   1]
+ [  0 727 404   0   2   0   0   2   0   0]
+ [ 24   1 955   0  17   0   1  20   0  14]
+ [ 17   0 871   3  28   2   0  36   2  51]
+ [  3   0  32   0 570   0   1  11   0 365]
+ [ 47   4 155   1 222  75   0 299   0  89]
+ [ 14   2  91   0 452  20 164  38   0 177]
+ [  3   4 128   0   7   0   0 741   2 143]
+ [  2   2 141   0  15   0   0  45  22 747]
+ [  7   0  20   0   4   0   0  42   0 936]]
+
+##########
+Iteration: 11
+##########
+Running ILP system with command: 
+/u/dantc93/NSL_End_to_End/FastLAS /tmp/NSIL_tmp_file_a15e40jn --solver="ASP" --fl2 --threads 128 --read-cache results/repeats/sum/10/10/LAS_cache/fastlas_cache
+Learned hypothesis:
+solution(V0,V1,V2) :- even(V0), even(V1), V2 = V1 + V0, digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- V2 = V0 + V1, not even(V0), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V1), V2 = V0, not even(V0), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), plus_nine(V0,V2), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+
+Component: ILP, run time: 175.95677208900452
+Converted hypothesis for neural-symbolic reasoning:
+solution(V0,V1,V2) :- even(V0), even(V1), V2 = V1 + V0, digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- V2 = V0 + V1, not even(V0), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V1), V2 = V0, not even(V0), digit_type(V0), digit_type(V1), num(V2).
+solution(V0,V1,V2) :- even(V0), plus_nine(V0,V2), not even(V1), digit_type(V0), digit_type(V1), num(V2).
+
+Starting neural network training for 1 epoch(s)...
+Component: nn_training, run time: 8.552483558654785
+Evaluating neural network digit on the train set
+Starting symbolic task evaluation for train set with preds type: nn.
+Component: symbolic_train_nn_preds_eval, run time: 11.7595853805542
+Performing exploration... 
+False Negative Rate for each label/structure combination:
+{'label_1': 61.224489795918366, 'label_5': 92.85714285714286, 'label_15': 81.63265306122449, 'label_8': 49.01960784313726, 'label_6': 56.043956043956044, 'label_9': 80.60344827586206, 'label_13': 81.15942028985508, 'label_7': 92.57425742574257, 'label_10': 48.62385321100917, 'label_11': 85.12820512820512, 'label_12': 67.42857142857143, 'label_14': 54.629629629629626, 'label_4': 46.49122807017544, 'label_3': 97.24770642201834, 'label_2': 17.07317073170732, 'label_16': 36.61971830985915, 'label_17': 60.0, 'label_0': 5.263157894736848, 'label_18': 0.0}
+Component: exploration, run time: 6.0090014934539795
+Performing exploitation...
+Component: exploitation, run time: 3.00649094581604
+Running testing for iteration: 11...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.7164
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 11 test accuracy:
+	End-to-end: 0.353
+	Network(s): {'digit': 0.7164}
+	Hypothesis: 0.6184
+Confusion matrix for network digit:
+[[956   3   1   0   1   1   0  15   0   3]
+ [  0 954 178   0   1   1   1   0   0   0]
+ [ 27   1 935   3  22   2   1  18  11  12]
+ [ 23   0 598 223  56  23   0  26  35  26]
+ [  3   0  15   0 757   0  11   0   2 194]
+ [ 23   4  53  10 298 325   5  45   2 127]
+ [ 12   3  28   0  42  25 727  25   1  95]
+ [  3   3  96   0  12   1   0 821  23  69]
+ [  3   2  70   2  13   5   2   8 521 348]
+ [  7   1  13   2   9   6   0  15  11 945]]
+
+##########
+Iteration: 12
+##########
+Running ILP system with command: 
+/u/dantc93/NSL_End_to_End/FastLAS /tmp/NSIL_tmp_file_skh0ynph --solver="ASP" --fl2 --threads 128 --read-cache results/repeats/sum/10/10/LAS_cache/fastlas_cache
+Learned hypothesis:
+solution(V0,V1,V2) :- V2 = V1 + V0, digit_type(V0), digit_type(V1), num(V2).
+
+Component: ILP, run time: 201.51229619979858
+Converted hypothesis for neural-symbolic reasoning:
+solution(V0,V1,V2) :- V2 = V1 + V0, digit_type(V0), digit_type(V1), num(V2).
+
+Starting neural network training for 1 epoch(s)...
+Component: nn_training, run time: 9.132286310195923
+Evaluating neural network digit on the train set
+Starting symbolic task evaluation for train set with preds type: nn.
+Component: symbolic_train_nn_preds_eval, run time: 11.738458156585693
+Performing exploration... 
+False Negative Rate for each label/structure combination:
+{'label_1': 0.0, 'label_5': 16.666666666666664, 'label_15': 13.265306122448983, 'label_8': 10.29411764705882, 'label_6': 11.538461538461542, 'label_9': 12.93103448275862, 'label_13': 17.391304347826086, 'label_7': 8.415841584158413, 'label_10': 12.844036697247708, 'label_11': 15.897435897435896, 'label_12': 16.000000000000004, 'label_14': 15.740740740740744, 'label_4': 9.649122807017541, 'label_3': 9.174311926605505, 'label_2': 9.756097560975608, 'label_16': 11.267605633802813, 'label_17': 14.54545454545455, 'label_0': 0.0, 'label_18': 4.347826086956519}
+Component: exploration, run time: 6.308237552642822
+Performing exploitation...
+Component: exploitation, run time: 3.02795147895813
+Running testing for iteration: 12...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.9283
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 12 test accuracy:
+	End-to-end: 0.8608
+	Network(s): {'digit': 0.9283}
+	Hypothesis: 1.0
+Confusion matrix for network digit:
+[[ 967    0    1    0    1    0    2    6    3    0]
+ [   0 1126    4    2    0    0    1    1    1    0]
+ [  13    5  949    7   16    0    1   15   24    2]
+ [   6    4   24  889    1   12    0   23   23   28]
+ [   1    4    3    0  934    0    4    3    2   31]
+ [  12    1    4   24    9  778    9   11   23   21]
+ [  11    9    1    2   26   12  892    1    4    0]
+ [   0    7   27    0    4    0    0  944    5   41]
+ [   7   11    4    6   16    6    4   13  852   55]
+ [   5    5    2    3   17    3    0   16    6  952]]
+
+##########
+Iteration: 13
+##########
+Running ILP system with command: 
+/u/dantc93/NSL_End_to_End/FastLAS /tmp/NSIL_tmp_file_tgmdh_tc --solver="ASP" --fl2 --threads 128 --read-cache results/repeats/sum/10/10/LAS_cache/fastlas_cache
+Learned hypothesis:
+solution(V0,V1,V2) :- V2 = V0 + V1, digit_type(V0), digit_type(V1), num(V2).
+
+Component: ILP, run time: 174.00572872161865
+Converted hypothesis for neural-symbolic reasoning:
+solution(V0,V1,V2) :- V2 = V0 + V1, digit_type(V0), digit_type(V1), num(V2).
+
+Starting neural network training for 1 epoch(s)...
+Component: nn_training, run time: 8.496233224868774
+Evaluating neural network digit on the train set
+Starting symbolic task evaluation for train set with preds type: nn.
+Component: symbolic_train_nn_preds_eval, run time: 11.719885110855103
+Performing exploration... 
+False Negative Rate for each label/structure combination:
+{'label_1': 2.0408163265306145, 'label_5': 11.111111111111116, 'label_15': 6.122448979591832, 'label_8': 6.372549019607843, 'label_6': 6.593406593406592, 'label_9': 8.18965517241379, 'label_13': 6.521739130434778, 'label_7': 4.455445544554459, 'label_10': 6.880733944954132, 'label_11': 8.20512820512821, 'label_12': 11.428571428571432, 'label_14': 10.185185185185187, 'label_4': 4.385964912280704, 'label_3': 7.339449541284404, 'label_2': 8.536585365853655, 'label_16': 9.859154929577462, 'label_17': 7.272727272727275, 'label_0': 0.0, 'label_18': 8.695652173913048}
+Component: exploration, run time: 6.3285462856292725
+Performing exploitation...
+Component: exploitation, run time: 3.1489343643188477
+Running testing for iteration: 13...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.9486
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 13 test accuracy:
+	End-to-end: 0.8992
+	Network(s): {'digit': 0.9486}
+	Hypothesis: 1.0
+Confusion matrix for network digit:
+[[ 960    0    1    0    2    0    5    6    3    3]
+ [   0 1123    5    1    0    1    1    1    3    0]
+ [   4    1  975    5   12    0    0   13   22    0]
+ [   0    0   11  930    1   10    1   19   24   14]
+ [   1    2    3    0  951    0    1    2    2   20]
+ [   7    0    1   20    5  809    6    9   23   12]
+ [   9    4    0    1   23    6  910    0    5    0]
+ [   0    5   29    2    5    0    0  961    4   22]
+ [   5    1    2    5    9    2    2   11  916   21]
+ [   3    5    1    5   22    0    0   15    7  951]]
+
+##########
+Iteration: 14
+##########
+Running ILP system with command: 
+/u/dantc93/NSL_End_to_End/FastLAS /tmp/NSIL_tmp_file_zdf_wh9e --solver="ASP" --fl2 --threads 128 --read-cache results/repeats/sum/10/10/LAS_cache/fastlas_cache
+Learned hypothesis:
+solution(V0,V1,V2) :- V2 = V1 + V0, digit_type(V0), digit_type(V1), num(V2).
+
+Component: ILP, run time: 175.44778656959534
+Converted hypothesis for neural-symbolic reasoning:
+solution(V0,V1,V2) :- V2 = V1 + V0, digit_type(V0), digit_type(V1), num(V2).
+
+Starting neural network training for 1 epoch(s)...
+Component: nn_training, run time: 8.189786911010742
+Evaluating neural network digit on the train set
+Starting symbolic task evaluation for train set with preds type: nn.
+Component: symbolic_train_nn_preds_eval, run time: 11.842161417007446
+Performing exploration... 
+False Negative Rate for each label/structure combination:
+{'label_1': 2.0408163265306145, 'label_5': 7.936507936507942, 'label_15': 5.102040816326525, 'label_8': 3.9215686274509776, 'label_6': 3.8461538461538436, 'label_9': 5.603448275862066, 'label_13': 5.797101449275366, 'label_7': 2.4752475247524774, 'label_10': 6.422018348623848, 'label_11': 5.128205128205132, 'label_12': 8.571428571428575, 'label_14': 6.481481481481477, 'label_4': 4.385964912280704, 'label_3': 4.587155963302747, 'label_2': 8.536585365853655, 'label_16': 2.8169014084507005, 'label_17': 3.6363636363636376, 'label_0': 0.0, 'label_18': 4.347826086956519}
+Component: exploration, run time: 5.7517900466918945
+Performing exploitation...
+Component: exploitation, run time: 2.961763620376587
+Running testing for iteration: 14...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.9569
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 14 test accuracy:
+	End-to-end: 0.915
+	Network(s): {'digit': 0.9569}
+	Hypothesis: 1.0
+Confusion matrix for network digit:
+[[ 960    0    1    0    1    1    4    4    3    6]
+ [   0 1125    4    3    0    0    0    1    2    0]
+ [   4    1  985    5    5    0    0   10   22    0]
+ [   0    0    8  951    0    9    1   17   18    6]
+ [   1    1    3    1  949    0    0    3    2   22]
+ [   8    0    2   21    3  822    3    6   16   11]
+ [   9    6    0    1   20    9  906    0    6    1]
+ [   1    6   21    4    3    0    0  973    3   17]
+ [   6    1    1    4    6    2    1    8  937    8]
+ [   2    5    1    5   12    0    0   15    8  961]]
+
+##########
+Iteration: 15
+##########
+Running ILP system with command: 
+/u/dantc93/NSL_End_to_End/FastLAS /tmp/NSIL_tmp_file_i7tan9na --solver="ASP" --fl2 --threads 128 --read-cache results/repeats/sum/10/10/LAS_cache/fastlas_cache
+Learned hypothesis:
+solution(V0,V1,V2) :- V2 = V1 + V0, digit_type(V0), digit_type(V1), num(V2).
+
+Component: ILP, run time: 148.04937934875488
+Converted hypothesis for neural-symbolic reasoning:
+solution(V0,V1,V2) :- V2 = V1 + V0, digit_type(V0), digit_type(V1), num(V2).
+
+Starting neural network training for 1 epoch(s)...
+Component: nn_training, run time: 8.560715198516846
+Evaluating neural network digit on the train set
+Starting symbolic task evaluation for train set with preds type: nn.
+Component: symbolic_train_nn_preds_eval, run time: 12.034455299377441
+Performing exploration... 
+False Negative Rate for each label/structure combination:
+{'label_1': 0.0, 'label_5': 7.14285714285714, 'label_15': 6.122448979591832, 'label_8': 1.9607843137254943, 'label_6': 2.7472527472527486, 'label_9': 4.31034482758621, 'label_13': 3.6231884057971064, 'label_7': 1.980198019801982, 'label_10': 5.9633027522935755, 'label_11': 4.102564102564099, 'label_12': 3.4285714285714253, 'label_14': 6.481481481481477, 'label_4': 3.508771929824561, 'label_3': 2.752293577981646, 'label_2': 6.0975609756097615, 'label_16': 2.8169014084507005, 'label_17': 1.8181818181818188, 'label_0': 0.0, 'label_18': 4.347826086956519}
+Component: exploration, run time: 5.697999954223633
+Performing exploitation...
+Component: exploitation, run time: 3.0196914672851562
+Running testing for iteration: 15...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.9626
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 15 test accuracy:
+	End-to-end: 0.926
+	Network(s): {'digit': 0.9626}
+	Hypothesis: 1.0
+Confusion matrix for network digit:
+[[ 958    0    1    0    1    0    5    5    3    7]
+ [   0 1125    4    3    0    0    0    1    2    0]
+ [   2    1  986    7    4    0    0   11   21    0]
+ [   0    0    3  971    0    6    1   13   11    5]
+ [   1    0    4    1  955    0    0    2    2   17]
+ [   6    0    1   26    2  826    4    4   15    8]
+ [   6    4    1    1   19    9  912    0    6    0]
+ [   0    6   17    6    2    0    0  977    5   15]
+ [   6    0    1    5    5    2    1    6  945    3]
+ [   2    4    0    3   11    2    0    6   10  971]]
+
+##########
+Iteration: 16
+##########
+Running ILP system with command: 
+/u/dantc93/NSL_End_to_End/FastLAS /tmp/NSIL_tmp_file_ooi3of_u --solver="ASP" --fl2 --threads 128 --read-cache results/repeats/sum/10/10/LAS_cache/fastlas_cache
+Learned hypothesis:
+solution(V0,V1,V2) :- V2 = V1 + V0, digit_type(V0), digit_type(V1), num(V2).
+
+Component: ILP, run time: 174.28056716918945
+Converted hypothesis for neural-symbolic reasoning:
+solution(V0,V1,V2) :- V2 = V1 + V0, digit_type(V0), digit_type(V1), num(V2).
+
+Starting neural network training for 1 epoch(s)...
+Component: nn_training, run time: 8.52733063697815
+Evaluating neural network digit on the train set
+Starting symbolic task evaluation for train set with preds type: nn.
+Component: symbolic_train_nn_preds_eval, run time: 11.750291109085083
+Performing exploration... 
+False Negative Rate for each label/structure combination:
+{'label_1': 0.0, 'label_5': 4.761904761904767, 'label_15': 4.081632653061229, 'label_8': 1.9607843137254943, 'label_6': 3.296703296703296, 'label_9': 3.879310344827591, 'label_13': 2.898550724637683, 'label_7': 1.980198019801982, 'label_10': 5.045871559633031, 'label_11': 3.076923076923077, 'label_12': 4.571428571428571, 'label_14': 6.481481481481477, 'label_4': 2.631578947368418, 'label_3': 2.752293577981646, 'label_2': 1.2195121951219523, 'label_16': 1.4084507042253502, 'label_17': 0.0, 'label_0': 0.0, 'label_18': 4.347826086956519}
+Component: exploration, run time: 5.793592691421509
+Performing exploitation...
+Component: exploitation, run time: 3.002847194671631
+Running testing for iteration: 16...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.9642
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 16 test accuracy:
+	End-to-end: 0.9294
+	Network(s): {'digit': 0.9642}
+	Hypothesis: 1.0
+Confusion matrix for network digit:
+[[ 960    0    1    0    1    0    5    5    3    5]
+ [   0 1128    2    3    0    0    0    0    2    0]
+ [   3    2  994    2    3    0    0   11   17    0]
+ [   0    0    7  965    0    8    1   10   12    7]
+ [   1    0    6    1  957    0    0    2    2   13]
+ [   3    1    1   14    0  847    4    3   10    9]
+ [   6    6    2    0   20   13  906    0    5    0]
+ [   1    6   17    6    2    0    0  981    1   14]
+ [   8    0    2    3    8    2    2    8  931   10]
+ [   3    5    0    4   14    1    0    6    3  973]]
+
+##########
+Iteration: 17
+##########
+Running ILP system with command: 
+/u/dantc93/NSL_End_to_End/FastLAS /tmp/NSIL_tmp_file_bb05jy4p --solver="ASP" --fl2 --threads 128 --read-cache results/repeats/sum/10/10/LAS_cache/fastlas_cache
+Learned hypothesis:
+solution(V0,V1,V2) :- V2 = V0 + V1, digit_type(V0), digit_type(V1), num(V2).
+
+Component: ILP, run time: 175.33036494255066
+Converted hypothesis for neural-symbolic reasoning:
+solution(V0,V1,V2) :- V2 = V0 + V1, digit_type(V0), digit_type(V1), num(V2).
+
+Starting neural network training for 1 epoch(s)...
+Component: nn_training, run time: 8.56721019744873
+Evaluating neural network digit on the train set
+Starting symbolic task evaluation for train set with preds type: nn.
+Component: symbolic_train_nn_preds_eval, run time: 11.779870748519897
+Performing exploration... 
+False Negative Rate for each label/structure combination:
+{'label_1': 0.0, 'label_5': 3.9682539682539653, 'label_15': 5.102040816326525, 'label_8': 0.9803921568627416, 'label_6': 2.7472527472527486, 'label_9': 3.4482758620689613, 'label_13': 2.1739130434782594, 'label_7': 1.4851485148514865, 'label_10': 4.128440366972475, 'label_11': 1.025641025641022, 'label_12': 1.7142857142857126, 'label_14': 3.703703703703709, 'label_4': 0.8771929824561431, 'label_3': 1.834862385321101, 'label_2': 0.0, 'label_16': 0.0, 'label_17': 0.0, 'label_0': 0.0, 'label_18': 4.347826086956519}
+Component: exploration, run time: 5.83742094039917
+Performing exploitation...
+Component: exploitation, run time: 2.9896838665008545
+Running testing for iteration: 17...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.9672
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 17 test accuracy:
+	End-to-end: 0.9356
+	Network(s): {'digit': 0.9672}
+	Hypothesis: 1.0
+Confusion matrix for network digit:
+[[ 967    1    1    0    1    0    4    3    2    1]
+ [   0 1127    2    3    0    0    0    0    3    0]
+ [   3    2 1004    3    1    0    0    5   14    0]
+ [   0    0    3  977    0    6    0    8   13    3]
+ [   2    5    5    1  947    0    3    1    4   14]
+ [   6    1    1   23    0  842    4    3    9    3]
+ [   6    4    1    1    9    8  925    0    4    0]
+ [   1    9   17    9    0    0    0  981    3    8]
+ [   9    0    1    4    6    2    3    8  937    4]
+ [   3    3    1    4   10    1    0    8   14  965]]
+
+##########
+Iteration: 18
+##########
+Running ILP system with command: 
+/u/dantc93/NSL_End_to_End/FastLAS /tmp/NSIL_tmp_file_s49qu7m5 --solver="ASP" --fl2 --threads 128 --read-cache results/repeats/sum/10/10/LAS_cache/fastlas_cache
+Learned hypothesis:
+solution(V0,V1,V2) :- V2 = V0 + V1, digit_type(V0), digit_type(V1), num(V2).
+
+Component: ILP, run time: 177.83445167541504
+Converted hypothesis for neural-symbolic reasoning:
+solution(V0,V1,V2) :- V2 = V0 + V1, digit_type(V0), digit_type(V1), num(V2).
+
+Starting neural network training for 1 epoch(s)...
+Component: nn_training, run time: 8.204602479934692
+Evaluating neural network digit on the train set
+Starting symbolic task evaluation for train set with preds type: nn.
+Component: symbolic_train_nn_preds_eval, run time: 11.803356885910034
+Performing exploration... 
+False Negative Rate for each label/structure combination:
+{'label_1': 0.0, 'label_5': 4.761904761904767, 'label_15': 2.0408163265306145, 'label_8': 0.9803921568627416, 'label_6': 2.7472527472527486, 'label_9': 3.879310344827591, 'label_13': 2.1739130434782594, 'label_7': 1.980198019801982, 'label_10': 3.2110091743119296, 'label_11': 1.025641025641022, 'label_12': 1.7142857142857126, 'label_14': 2.777777777777779, 'label_4': 2.631578947368418, 'label_3': 1.834862385321101, 'label_2': 1.2195121951219523, 'label_16': 0.0, 'label_17': 0.0, 'label_0': 0.0, 'label_18': 0.0}
+Component: exploration, run time: 5.683619737625122
+Performing exploitation...
+Component: exploitation, run time: 2.970097303390503
+Running testing for iteration: 18...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.9662
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 18 test accuracy:
+	End-to-end: 0.9334
+	Network(s): {'digit': 0.9662}
+	Hypothesis: 1.0
+Confusion matrix for network digit:
+[[ 964    0    1    0    1    3    2    4    2    3]
+ [   0 1127    1    3    0    1    0    0    3    0]
+ [   5    3  992    7    1    0    0    8   16    0]
+ [   0    0    4  972    0   10    0    7    9    8]
+ [   2    2    6    1  926    0    2    5    4   34]
+ [   2    0    0    9    0  864    3    2    5    7]
+ [   6    4    0    0    9   17  919    0    3    0]
+ [   1    7   16    9    0    0    0  982    1   12]
+ [   8    0    1    9    3    2    3    6  929   13]
+ [   1    1    0    3    5    2    0    5    5  987]]
+
+##########
+Iteration: 19
+##########
+Running ILP system with command: 
+/u/dantc93/NSL_End_to_End/FastLAS /tmp/NSIL_tmp_file_7u757byh --solver="ASP" --fl2 --threads 128 --read-cache results/repeats/sum/10/10/LAS_cache/fastlas_cache
+Learned hypothesis:
+solution(V0,V1,V2) :- V2 = V0 + V1, digit_type(V0), digit_type(V1), num(V2).
+
+Component: ILP, run time: 180.27032232284546
+Converted hypothesis for neural-symbolic reasoning:
+solution(V0,V1,V2) :- V2 = V0 + V1, digit_type(V0), digit_type(V1), num(V2).
+
+Starting neural network training for 1 epoch(s)...
+Component: nn_training, run time: 8.11978554725647
+Evaluating neural network digit on the train set
+Starting symbolic task evaluation for train set with preds type: nn.
+Component: symbolic_train_nn_preds_eval, run time: 11.791797399520874
+Performing exploration... 
+False Negative Rate for each label/structure combination:
+{'label_1': 0.0, 'label_5': 3.9682539682539653, 'label_15': 3.0612244897959218, 'label_8': 0.4901960784313708, 'label_6': 1.098901098901095, 'label_9': 1.2931034482758674, 'label_13': 1.449275362318836, 'label_7': 0.990099009900991, 'label_10': 3.669724770642202, 'label_11': 1.025641025641022, 'label_12': 1.1428571428571455, 'label_14': 2.777777777777779, 'label_4': 1.7543859649122862, 'label_3': 1.834862385321101, 'label_2': 0.0, 'label_16': 0.0, 'label_17': 0.0, 'label_0': 0.0, 'label_18': 0.0}
+Component: exploration, run time: 5.777533292770386
+Performing exploitation...
+Component: exploitation, run time: 2.9884843826293945
+Running testing for iteration: 19...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.9687
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 19 test accuracy:
+	End-to-end: 0.9382
+	Network(s): {'digit': 0.9687}
+	Hypothesis: 1.0
+Confusion matrix for network digit:
+[[ 967    0    1    0    1    1    5    2    1    2]
+ [   0 1130    1    2    0    0    0    0    2    0]
+ [   8    3  994    3    1    0    0    7   16    0]
+ [   0    0    4  968    0   17    0    8    9    4]
+ [   2    3    4    1  933    0    3    1    2   33]
+ [   3    0    1    5    0  870    4    2    4    3]
+ [   6    4    1    0    7   12  926    0    2    0]
+ [   1    7   15    5    0    0    0  983    3   14]
+ [   8    0    1    4    4    3    3    9  932   10]
+ [   1    2    0    2    5    3    1    6    5  984]]
+
+##########
+Iteration: 20
+##########
+Running ILP system with command: 
+/u/dantc93/NSL_End_to_End/FastLAS /tmp/NSIL_tmp_file_a01gn7he --solver="ASP" --fl2 --threads 128 --read-cache results/repeats/sum/10/10/LAS_cache/fastlas_cache
+Learned hypothesis:
+solution(V0,V1,V2) :- V2 = V1 + V0, digit_type(V0), digit_type(V1), num(V2).
+
+Component: ILP, run time: 187.44791841506958
+Converted hypothesis for neural-symbolic reasoning:
+solution(V0,V1,V2) :- V2 = V1 + V0, digit_type(V0), digit_type(V1), num(V2).
+
+Starting neural network training for 1 epoch(s)...
+Component: nn_training, run time: 8.45746922492981
+Evaluating neural network digit on the train set
+Starting symbolic task evaluation for train set with preds type: nn.
+Component: symbolic_train_nn_preds_eval, run time: 11.837570428848267
+Performing exploration... 
+False Negative Rate for each label/structure combination:
+{'label_1': 0.0, 'label_5': 3.1746031746031744, 'label_15': 3.0612244897959218, 'label_8': 0.9803921568627416, 'label_6': 1.098901098901095, 'label_9': 2.155172413793105, 'label_13': 1.449275362318836, 'label_7': 0.4950495049504955, 'label_10': 3.2110091743119296, 'label_11': 1.538461538461533, 'label_12': 0.5714285714285672, 'label_14': 3.703703703703709, 'label_4': 2.631578947368418, 'label_3': 0.917431192660545, 'label_2': 0.0, 'label_16': 0.0, 'label_17': 0.0, 'label_0': 0.0, 'label_18': 0.0}
+Component: exploration, run time: 6.394843578338623
+Performing exploitation...
+Component: exploitation, run time: 3.0120606422424316
+Running testing for iteration: 20...
+Evaluating neural network digit on the test set
+Accuracy for neural network digit: 0.9681
+Starting symbolic task evaluation for test set with preds type: nn.
+Starting symbolic task evaluation for test set with preds type: ground.
+Iteration 20 test accuracy:
+	End-to-end: 0.9368
+	Network(s): {'digit': 0.9681}
+	Hypothesis: 1.0
+Confusion matrix for network digit:
+[[ 966    1    1    0    1    0    0    4    2    5]
+ [   0 1128    3    2    0    0    0    0    2    0]
+ [   6    3 1003    4    1    0    0    6    9    0]
+ [   0    0    3  968    0   12    0   11    7    9]
+ [   2    4    6    1  926    0    3    2    0   38]
+ [   4    0    1    9    0  859    4    3    5    7]
+ [   8    4    1    0    7   10  926    0    2    0]
+ [   1    4   15    3    0    0    0  988    1   16]
+ [   7    1    2    3    5    2    2   10  927   15]
+ [   1    0    0    2    5    2    0    8    1  990]]

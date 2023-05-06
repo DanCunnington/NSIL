@@ -1,0 +1,1 @@
+python run.py --tune --ilp_system=ILASP --custom_ilp_cmd_line_args='--version=4' --ilp_max_example_len=3 --meta_abd_data --prune_ilp_example_weight_threshold=55 --skip_initial_testing "$@"
