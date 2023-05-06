@@ -2,7 +2,7 @@
 This repository is associated with the [paper](https://arxiv.org/abs/2205.12735) "Neuro-Symbolic Learning of Answer Set Programs from Raw Data", published at IJCAI 2023. Please consider [citing](#citation) if it is useful in your work. The technical appendix forming our supplementary material is available [here](./TechnicalAppendix.pdf).
 
 ## Intel x86 vs. Apple Silicon (Mac M1/M2)
-If running on an intel machine, the recommended approach is using [Docker](#docker-installation). For Apple Silicon users, Docker can be used by adding the `--platform linux/amd64` flag to the build and run commands, however, the performance hit is significant. It is recommended to install [natively](#native-apple-silicon-installation).
+If running on an intel machine, the recommended approach is using [Docker](#docker-installation). For Apple Silicon users, Docker can be used by adding the `--platform linux/amd64` flag to the build and run commands, however, the performance hit is significant. It is recommended to install [natively](#native-unix-installation).
 
 ## Docker installation
 A docker container is provided for easy setup and installation so the only additional software required is a container runtime such as [Docker Desktop](https://www.docker.com/products/docker-desktop/), [Podman](https://podman.io/), or [minikube](https://minikube.sigs.k8s.io/docs/tutorials/docker_desktop_replacement/).
