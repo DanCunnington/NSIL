@@ -10,7 +10,7 @@ A docker container is provided for easy setup and installation so the only addit
 ### Setup
 The following commands assume the `docker` command is available on your system. If using a different container run-time, please replace accordingly. From the root directory:
 
-1. `docker build -t nsil:ijcai_2023 .`.
+1. `docker build -t nsil:ijcai_2023 .`
 2. `docker run -d -p 8000:8000 -p 9990:9990 --name nsil_ijcai_2023 nsil:ijcai_2023`
 3. Open [http://localhost:8000](http://localhost:8000) in your web browser to launch a markdown viewer containing detailed documentation that explains how to reproduce the experiment results.
 

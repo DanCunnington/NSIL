@@ -1,5 +1,5 @@
 # Setup script to download datasets
-mkdir data && cd data
+mkdir -p data && cd data
 curl -O -L https://www.dropbox.com/s/6yjucprsvcu6se4/fashion_mnist_1_to_5.zip
 curl -O -L https://www.dropbox.com/s/lj62jxl3vqeh9kn/mnist_digits_1_to_5.zip
 curl -O -L https://www.dropbox.com/s/xhadba859spic3f/MNIST.zip
