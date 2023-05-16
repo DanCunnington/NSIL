@@ -13,6 +13,7 @@ RUN add-apt-repository -y ppa:deadsnakes/ppa
 RUN apt-get -y install python3.8
 RUN apt-get -y install python3.9-dev
 RUN apt-get -y install python3-pip
+RUN apt-get install -y libjpeg-dev zlib1g-dev
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
 # Copy NSIL code
@@ -20,6 +21,7 @@ WORKDIR NSIL
 COPY . .
 
 # Run NSIL setup
+RUN pip3 install --upgrade pip setuptools wheel
 RUN pip3 install -r requirements.txt
 RUN chmod +x ./download_data.sh
 RUN ./download_data.sh
