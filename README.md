@@ -1,5 +1,5 @@
 # NSIL: Neuro-Symbolic Learning of Answer Set Programs from Raw Data
-This repository is associated with the [paper](https://arxiv.org/abs/2205.12735) "Neuro-Symbolic Learning of Answer Set Programs from Raw Data", published at IJCAI 2023. Please consider [citing](#citation) if it is useful in your work. The technical appendix forming our supplementary material is available [here](./TechnicalAppendix.pdf).
+This repository is associated with the [paper](https://arxiv.org/abs/2205.12735) "Neuro-Symbolic Learning of Answer Set Programs from Raw Data", published at IJCAI 2023. A recorded presentation is [available](https://www.youtube.com/watch?v=wUYoiH8Aie8). Please consider [citing](#citation) if it is useful in your work. The technical appendix forming our supplementary material is available [here](./TechnicalAppendix.pdf).
 
 ## Intel x86 vs. Apple Silicon (Mac M1/M2)
 If running on an intel machine, the recommended approach is using [Docker](#docker-installation). For Apple Silicon users, Docker can be used by adding the `--platform linux/amd64` flag to the build and run commands, however, the performance hit is significant. It is recommended to install [natively](#native-unix-installation).
